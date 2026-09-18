@@ -1,345 +1,909 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AllPanel 7 ID</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+    <title>DIAMOND | Gully Cricket 2026</title>
 
-body{
-    background:#042b23;
-    color:#fff;
-    overflow-x:auto;
-}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
 
-.container{
-    display:flex;
-    min-height:100vh;
-}
+        :root {
+            --bg: #070707;
+            --card: #111111;
+            --card2: #171717;
+            --white: #ffffff;
+            --muted: #9ca3af;
+            --accent: #d7ff00;
+            --accent-dark: #a9c900;
+            --border: #262626;
+        }
 
-.demo{
-    width:70%;
-    background:#111;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-iframe{
-    width:100%;
-    height:100vh;
-    border:none;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.right{
-    width:30%;
-    padding:30px 22px;
-    background:linear-gradient(180deg,#008f73,#043d33);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+        }
 
-.box{
-    width:100%;
-    background:#07110f;
-    border:1px solid #00e8ad;
-    border-radius:22px;
-    padding:24px 18px;
-    text-align:center;
-    box-shadow:0 0 30px rgba(0,232,173,.35);
-}
+        /* =========================
+           NAVBAR
+        ========================= */
 
-.badge{
-    display:inline-block;
-    background:#00e8ad;
-    color:#001f18;
-    padding:10px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    margin-bottom:16px;
-}
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
 
-h1{
-    color:#00e8ad;
-    font-size:30px;
-    text-transform:uppercase;
-    margin-bottom:12px;
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-.sub{
-    color:#ddd;
-    line-height:1.6;
-    margin-bottom:18px;
-    font-size:16px;
-}
+            padding: 25px 6%;
+        }
 
-.process{
-    text-align:left;
-    background:linear-gradient(180deg,#07110f,#06483b);
-    border:1px solid #00e8ad;
-    border-radius:16px;
-    padding:18px;
-    margin:18px 0;
-}
+        .nav-logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
 
-.process h2{
-    color:#00e8ad;
-    font-size:20px;
-    margin-bottom:12px;
-    text-align:center;
-}
+        .nav-logo span {
+            color: var(--accent);
+        }
 
-.process h3{
-    color:#fff;
-    font-size:18px;
-    margin:16px 0 8px;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 14px;
+            font-weight: 600;
+        }
 
-.process p,
-.process li{
-    color:#ddd;
-    font-size:15px;
-    line-height:1.6;
-}
+        nav a:hover {
+            color: var(--accent);
+        }
 
-.process ol{
-    padding-left:20px;
-}
+        /* =========================
+           HERO
+        ========================= */
 
-.manual-whatsapp,
-.signup{
-    display:block;
-    background:#00e8ad;
-    color:#001f18;
-    text-decoration:none;
-    padding:15px;
-    border-radius:14px;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    box-shadow:0 0 18px rgba(0,232,173,.4);
-}
+        .hero {
+            min-height: 100vh;
 
-.manual-whatsapp{
-    margin:14px 0 8px;
-}
+            display: flex;
+            align-items: center;
 
-.signup{
-    margin-top:16px;
-}
+            padding: 120px 6% 70px;
 
-.manual-whatsapp:hover,
-.signup:hover{
-    background:#00c996;
-}
+            position: relative;
+            overflow: hidden;
 
-.features{
-    display:grid;
-    gap:12px;
-    margin:22px 0 18px;
-}
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.95) 0%,
+                    rgba(0,0,0,.75) 50%,
+                    rgba(0,0,0,.45) 100%
+                ),
+                url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1800&q=90")
+                center/cover;
+        }
 
-.feature{
-    background:linear-gradient(90deg,#092a24,#06483b);
-    border:1px solid #00e8ad;
-    border-radius:14px;
-    padding:14px;
-    font-size:17px;
-    font-weight:bold;
-}
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
 
-.feature span{
-    color:#00e8ad;
-}
+            background:
+                radial-gradient(
+                    circle at 80% 50%,
+                    rgba(215,255,0,.15),
+                    transparent 35%
+                );
 
-.website-row{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-top:18px;
-    font-weight:bold;
-    flex-wrap:wrap;
-}
+            pointer-events: none;
+        }
 
-.website-row a{
-    text-decoration:none;
-    word-break:break-word;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
 
-.website,
-.whatsapp-small{
-    color:#00e8ad;
-}
+            max-width: 850px;
+        }
 
-.trust{
-    margin-top:18px;
-    color:#ccc;
-    line-height:1.7;
-}
+        .small-title {
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
-.footer{
-    margin-top:20px;
-    color:#888;
-    font-size:12px;
-}
+        .hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(80px, 15vw, 180px);
+            line-height: .8;
+            letter-spacing: 2px;
+        }
 
-/* MOBILE — Laptop jaisa same layout */
-@media(max-width:768px){
+        .hero h1 span {
+            color: var(--accent);
+        }
 
-    body{
-        overflow-x:auto;
-    }
+        .hero h2 {
+            font-size: clamp(24px, 4vw, 45px);
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
 
-    .container{
-        width:1200px;
-        min-width:1200px;
-        flex-direction:row;
-    }
+        .hero-description {
+            color: #d1d5db;
+            max-width: 650px;
+            line-height: 1.8;
+            margin-top: 20px;
+            font-size: 17px;
+        }
 
-    .demo{
-        width:70%;
-    }
+        /* EVENT INFO */
 
-    .right{
-        width:30%;
-        padding:25px 18px;
-    }
+        .event-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 35px;
+        }
 
-    iframe{
-        height:100vh;
-        min-height:700px;
-    }
+        .info-box {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            backdrop-filter: blur(10px);
 
-    h1{
-        font-size:28px;
-    }
+            padding: 15px 20px;
+            border-radius: 8px;
+        }
 
-    .manual-whatsapp,
-    .signup{
-        font-size:19px;
-    }
-}
-</style>
+        .info-box small {
+            display: block;
+            color: #9ca3af;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-box strong {
+            font-size: 15px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+
+            margin-top: 35px;
+            padding: 16px 28px;
+
+            background: var(--accent);
+            color: #000;
+
+            text-decoration: none;
+            font-weight: 800;
+
+            border-radius: 5px;
+
+            transition: .2s;
+        }
+
+        .hero-btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section.content {
+            padding: 90px 6%;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 50px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        /* =========================
+           TEAMS
+        ========================= */
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .team-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px 15px;
+            min-height: 130px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border-radius: 8px;
+
+            transition: .25s;
+        }
+
+        .team-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+        }
+
+        .team-number {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .team-card h3 {
+            font-size: 17px;
+            line-height: 1.3;
+        }
+
+        /* =========================
+           FIXTURES
+        ========================= */
+
+        .fixtures {
+            display: grid;
+            gap: 12px;
+        }
+
+        .fixture {
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
+            align-items: center;
+
+            padding: 20px 25px;
+            border-radius: 8px;
+
+            transition: .2s;
+        }
+
+        .fixture:hover {
+            border-color: #555;
+        }
+
+        .fixture-date {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .fixture-teams {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .fixture-type {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* FINAL */
+
+        .final {
+            background:
+                linear-gradient(
+                    110deg,
+                    #171717,
+                    #242424
+                );
+
+            border: 1px solid var(--accent);
+
+            padding: 35px 30px;
+            margin-top: 20px;
+
+            border-radius: 10px;
+        }
+
+        .final .fixture-date {
+            font-size: 15px;
+        }
+
+        .final .fixture-teams {
+            font-family: 'Anton', sans-serif;
+            font-size: 30px;
+            letter-spacing: 1px;
+        }
+
+        .final-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           STADIUM
+        ========================= */
+
+        .stadium {
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.7),
+                    rgba(0,0,0,.85)
+                ),
+                url("https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1600&q=85")
+                center/cover;
+
+            border-radius: 12px;
+            padding: 70px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 40px;
+
+            border: 1px solid #333;
+        }
+
+        .stadium h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 55px;
+            text-transform: uppercase;
+        }
+
+        .stadium p {
+            color: #d1d5db;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-top: 15px;
+        }
+
+        .location-button {
+            display: inline-block;
+            white-space: nowrap;
+
+            background: var(--accent);
+            color: #000;
+
+            padding: 16px 25px;
+            text-decoration: none;
+
+            font-weight: 800;
+            border-radius: 5px;
+        }
+
+        /* =========================
+           INVITATION
+        ========================= */
+
+        .watch {
+            text-align: center;
+            padding: 110px 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #242424,
+                    #070707 65%
+                );
+        }
+
+        .watch .section-label {
+            margin-bottom: 15px;
+        }
+
+        .watch h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(50px, 8vw, 100px);
+            line-height: .9;
+            text-transform: uppercase;
+        }
+
+        .watch h2 span {
+            color: var(--accent);
+        }
+
+        .watch p {
+            max-width: 650px;
+            margin: 25px auto 0;
+
+            color: #bdbdbd;
+            line-height: 1.8;
+        }
+
+        .watch-button {
+            display: inline-block;
+            margin-top: 30px;
+
+            padding: 17px 32px;
+
+            background: var(--accent);
+            color: #000;
+
+            text-decoration: none;
+            font-weight: 900;
+
+            border-radius: 5px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 30px 6%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: #777;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .teams-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fixture {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .fixture-type {
+                margin-top: 5px;
+            }
+
+            .stadium {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            nav div:last-child {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 85px;
+            }
+
+            section.content {
+                padding: 65px 20px;
+            }
+
+            .section-title {
+                font-size: 40px;
+            }
+
+            .teams-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-info {
+                flex-direction: column;
+            }
+
+            .info-box {
+                width: 100%;
+            }
+
+            .stadium {
+                padding: 45px 25px;
+            }
+
+            .stadium h2 {
+                font-size: 42px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <!-- NAVIGATION -->
 
-    <div class="demo">
-        <iframe src="https://www.allpanel7.com/?code=MAHA1991"></iframe>
-    </div>
+    <nav>
+        <div class="nav-logo">
+            DIAMOND<span>.</span>
+        </div>
 
-    <div class="right">
+        <div>
+            <a href="#teams">TEAMS</a>
+            <a href="#fixtures">FIXTURES</a>
+            <a href="#venue">VENUE</a>
+        </div>
+    </nav>
 
-        <div class="box">
 
-            <div class="badge">ALLPANEL7</div>
+    <!-- HERO -->
 
-            <h1>Get Your AllPanel7 ID</h1>
+    <header class="hero">
 
-            <p class="sub">
-                Choose the registration method that's most convenient for you and get started with AllPanel 7 today!
+        <div class="hero-content">
+
+            <div class="small-title">
+                Gully Cricket Tournament 2026
+            </div>
+
+            <h1>
+                DIAMOND<span>.</span>
+            </h1>
+
+            <h2>
+                The Gully. The Game. The Crowd.
+            </h2>
+
+            <p class="hero-description">
+                Get ready for an action-packed cricket experience.
+                Come to Diamond Stadium, bring your friends and
+                cheer for your favourite team as the best of gully
+                cricket goes head-to-head.
             </p>
 
-            <div class="process">
+            <div class="event-info">
 
-                <h2>Get Your AllPanel 7 ID – Your Choice!</h2>
-
-                <h3>✅ Manual ID</h3>
-
-                <p>
-                    Click the <strong>"WhatsApp Now"</strong> button and our team will create your ID for you.
-                </p>
-
-                <a class="manual-whatsapp"
-                   href="https://wa.me/+917980303785?text=Hello%20I%20want%20new%20manual%20ID"
-                   target="_blank">
-                    📲 WhatsApp Now
-                </a>
-
-                <h3>✅ Self-Registration</h3>
-
-                <p>
-                    Click the <strong>"Sign Up"</strong> button and follow these simple steps:
-                </p>
-
-                <ol>
-                    <li>Enter your mobile number.</li>
-                    <li>Create your username.</li>
-                    <li>Create your password and confirm it.</li>
-                    <li>The Signup Code is pre-filled as <strong>MAHA1991</strong>.</li>
-                    <li>Click <strong>"Sign Up"</strong> to complete your registration.</li>
-                </ol>
-
-                <a class="signup"
-                   href="https://www.allpanel7.com/?code=MAHA1991"
-                   target="_blank">
-                    📝 Sign Up
-                </a>
-
-            </div>
-
-            <div class="features">
-
-                <div class="feature">
-                    Minimum Deposit:
-                    <span>₹100 Only</span>
+                <div class="info-box">
+                    <small>Tournament</small>
+                    <strong>Gully Cricket 2026</strong>
                 </div>
 
-                <div class="feature">
-                    Welcome Bonus:
-                    <span>10%</span>
+                <div class="info-box">
+                    <small>Starts</small>
+                    <strong>20 September 2026</strong>
                 </div>
 
-                <div class="feature">
-                    Auto and Manual Service:
-                    <span>Available</span>
+                <div class="info-box">
+                    <small>Final</small>
+                    <strong>20 October 2026</strong>
                 </div>
 
-                <div class="feature">
-                    Quick Help:
-                    <span>24/7 Support Available</span>
+                <div class="info-box">
+                    <small>Venue</small>
+                    <strong>Diamond Stadium</strong>
                 </div>
 
             </div>
 
-            <div class="website-row">
+            <a href="#fixtures" class="hero-btn">
+                VIEW MATCHES →
+            </a>
 
-                <a class="website"
-                   href="https://www.allpanel7.com/?code=MAHA1991"
-                   target="_blank">
-                    🌐 www.allpanel7.com/?code=MAHA1991
-                </a>
+        </div>
 
-                <a class="whatsapp-small"
-                   href="https://wa.me/+917980303785"
-                   target="_blank">
-                    💬 WhatsApp
-                </a>
+    </header>
 
+
+    <!-- TEAMS -->
+
+    <section class="content" id="teams">
+
+        <div class="section-label">
+            10 Teams • 1 Tournament
+        </div>
+
+        <h2 class="section-title">
+            Meet The Teams
+        </h2>
+
+        <div class="teams-grid">
+
+            <div class="team-card">
+                <div class="team-number">TEAM 01</div>
+                <h3>Gully Gladiators</h3>
             </div>
 
-            <div class="trust">
-                ✅ Trusted Manual Support<br>
-                ✅ Simple Process<br>
-                ✅ Fast Response
+            <div class="team-card">
+                <div class="team-number">TEAM 02</div>
+                <h3>Street Strikers</h3>
             </div>
 
-            <div class="footer">
-                18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply
+            <div class="team-card">
+                <div class="team-number">TEAM 03</div>
+                <h3>Gully Kings</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 04</div>
+                <h3>Desi Destroyers</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 05</div>
+                <h3>Gully Warriors</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 06</div>
+                <h3>Batting Baaz</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 07</div>
+                <h3>Sixer Squad</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 08</div>
+                <h3>Street Legends</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 09</div>
+                <h3>Gully Gang</h3>
+            </div>
+
+            <div class="team-card">
+                <div class="team-number">TEAM 10</div>
+                <h3>Power Hitters</h3>
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</div>
+
+    <!-- FIXTURES -->
+
+    <section class="content" id="fixtures">
+
+        <div class="section-label">
+            Live The Game
+        </div>
+
+        <h2 class="section-title">
+            Match Fixtures
+        </h2>
+
+        <div class="fixtures">
+
+            <div class="fixture">
+                <div class="fixture-date">20 SEP 2026</div>
+                <div class="fixture-teams">
+                    Gully Gladiators &nbsp; VS &nbsp; Street Strikers
+                </div>
+                <div class="fixture-type">Match 01</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">21 SEP 2026</div>
+                <div class="fixture-teams">
+                    Gully Kings &nbsp; VS &nbsp; Desi Destroyers
+                </div>
+                <div class="fixture-type">Match 02</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">22 SEP 2026</div>
+                <div class="fixture-teams">
+                    Gully Warriors &nbsp; VS &nbsp; Batting Baaz
+                </div>
+                <div class="fixture-type">Match 03</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">23 SEP 2026</div>
+                <div class="fixture-teams">
+                    Sixer Squad &nbsp; VS &nbsp; Street Legends
+                </div>
+                <div class="fixture-type">Match 04</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">24 SEP 2026</div>
+                <div class="fixture-teams">
+                    Gully Gang &nbsp; VS &nbsp; Power Hitters
+                </div>
+                <div class="fixture-type">Match 05</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">27 SEP 2026</div>
+                <div class="fixture-teams">
+                    Winner Match 1 &nbsp; VS &nbsp; Winner Match 2
+                </div>
+                <div class="fixture-type">Semi Final 01</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">28 SEP 2026</div>
+                <div class="fixture-teams">
+                    Winner Match 3 &nbsp; VS &nbsp; Winner Match 4
+                </div>
+                <div class="fixture-type">Semi Final 02</div>
+            </div>
+
+            <div class="fixture">
+                <div class="fixture-date">30 SEP 2026</div>
+                <div class="fixture-teams">
+                    Winner Match 5 &nbsp; VS &nbsp; Best Performing Losing Team
+                </div>
+                <div class="fixture-type">Qualifier</div>
+            </div>
+
+        </div>
+
+
+        <!-- FINAL -->
+
+        <div class="final">
+
+            <div class="final-badge">
+                GRAND FINAL
+            </div>
+
+            <div class="fixture-date">
+                20 OCTOBER 2026
+            </div>
+
+            <div class="fixture-teams">
+                FINALIST 01 &nbsp; VS &nbsp; FINALIST 02
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STADIUM -->
+
+    <section class="content" id="venue">
+
+        <div class="section-label">
+            Match Venue
+        </div>
+
+        <div class="stadium">
+
+            <div>
+
+                <h2>
+                    Diamond<br>Stadium
+                </h2>
+
+                <p>
+                    This is where the action happens.
+                    Join us at Diamond Stadium for the
+                    Gully Cricket Tournament 2026 and
+                    experience the matches live from the
+                    stands.
+                </p>
+
+                <p>
+                    <strong>📍 Location:</strong>
+                    Diamond Stadium
+                </p>
+
+            </div>
+
+            <a
+                href="https://www.google.com/maps/search/?api=1&query=Diamond+Stadium"
+                target="_blank"
+                class="location-button"
+            >
+                OPEN MAP →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- INVITATION -->
+
+    <section class="watch">
+
+        <div class="section-label">
+            Everyone Is Welcome
+        </div>
+
+        <h2>
+            COME<br>
+            <span>WATCH LIVE.</span>
+        </h2>
+
+        <p>
+            Bring your friends. Bring your family.
+            Bring your cricket spirit.
+            Come to Diamond Stadium and make some noise
+            for the players.
+        </p>
+
+        <a
+            href="https://www.google.com/maps/search/?api=1&query=Diamond+Stadium"
+            target="_blank"
+            class="watch-button"
+        >
+            📍 FIND DIAMOND STADIUM
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div>
+            <strong>DIAMOND</strong> — Gully Cricket Tournament 2026
+        </div>
+
+        <div>
+            Diamond Stadium
+        </div>
+
+    </footer>
 
 </body>
 </html>
+```
