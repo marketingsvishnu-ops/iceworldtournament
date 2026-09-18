@@ -1,909 +1,779 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>DIAMOND | Gully Cricket 2026</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
-
-        :root {
-            --bg: #070707;
-            --card: #111111;
-            --card2: #171717;
-            --white: #ffffff;
-            --muted: #9ca3af;
-            --accent: #d7ff00;
-            --accent-dark: #a9c900;
-            --border: #262626;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        nav {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 10;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 25px 6%;
-        }
-
-        .nav-logo {
-            font-family: 'Anton', sans-serif;
-            font-size: 30px;
-            letter-spacing: 2px;
-        }
-
-        .nav-logo span {
-            color: var(--accent);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 28px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-
-            padding: 120px 6% 70px;
-
-            position: relative;
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(0,0,0,.95) 0%,
-                    rgba(0,0,0,.75) 50%,
-                    rgba(0,0,0,.45) 100%
-                ),
-                url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1800&q=90")
-                center/cover;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background:
-                radial-gradient(
-                    circle at 80% 50%,
-                    rgba(215,255,0,.15),
-                    transparent 35%
-                );
-
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-
-            max-width: 850px;
-        }
-
-        .small-title {
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(80px, 15vw, 180px);
-            line-height: .8;
-            letter-spacing: 2px;
-        }
-
-        .hero h1 span {
-            color: var(--accent);
-        }
-
-        .hero h2 {
-            font-size: clamp(24px, 4vw, 45px);
-            margin-top: 30px;
-            text-transform: uppercase;
-        }
-
-        .hero-description {
-            color: #d1d5db;
-            max-width: 650px;
-            line-height: 1.8;
-            margin-top: 20px;
-            font-size: 17px;
-        }
-
-        /* EVENT INFO */
-
-        .event-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 35px;
-        }
-
-        .info-box {
-            background: rgba(255,255,255,.08);
-            border: 1px solid rgba(255,255,255,.15);
-            backdrop-filter: blur(10px);
-
-            padding: 15px 20px;
-            border-radius: 8px;
-        }
-
-        .info-box small {
-            display: block;
-            color: #9ca3af;
-            font-size: 11px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .info-box strong {
-            font-size: 15px;
-        }
-
-        .hero-btn {
-            display: inline-block;
-
-            margin-top: 35px;
-            padding: 16px 28px;
-
-            background: var(--accent);
-            color: #000;
-
-            text-decoration: none;
-            font-weight: 800;
-
-            border-radius: 5px;
-
-            transition: .2s;
-        }
-
-        .hero-btn:hover {
-            background: white;
-            transform: translateY(-3px);
-        }
-
-        /* =========================
-           SECTIONS
-        ========================= */
-
-        section.content {
-            padding: 90px 6%;
-            max-width: 1300px;
-            margin: auto;
-        }
-
-        .section-label {
-            color: var(--accent);
-            font-size: 12px;
-            letter-spacing: 4px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 50px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        /* =========================
-           TEAMS
-        ========================= */
-
-        .teams-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-        }
-
-        .team-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 25px 15px;
-            min-height: 130px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            border-radius: 8px;
-
-            transition: .25s;
-        }
-
-        .team-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-6px);
-        }
-
-        .team-number {
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .team-card h3 {
-            font-size: 17px;
-            line-height: 1.3;
-        }
-
-        /* =========================
-           FIXTURES
-        ========================= */
-
-        .fixtures {
-            display: grid;
-            gap: 12px;
-        }
-
-        .fixture {
-            background: var(--card);
-            border: 1px solid var(--border);
-
-            display: grid;
-            grid-template-columns: 150px 1fr auto;
-            align-items: center;
-
-            padding: 20px 25px;
-            border-radius: 8px;
-
-            transition: .2s;
-        }
-
-        .fixture:hover {
-            border-color: #555;
-        }
-
-        .fixture-date {
-            color: var(--accent);
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .fixture-teams {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .fixture-type {
-            color: var(--muted);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* FINAL */
-
-        .final {
-            background:
-                linear-gradient(
-                    110deg,
-                    #171717,
-                    #242424
-                );
-
-            border: 1px solid var(--accent);
-
-            padding: 35px 30px;
-            margin-top: 20px;
-
-            border-radius: 10px;
-        }
-
-        .final .fixture-date {
-            font-size: 15px;
-        }
-
-        .final .fixture-teams {
-            font-family: 'Anton', sans-serif;
-            font-size: 30px;
-            letter-spacing: 1px;
-        }
-
-        .final-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: #000;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 900;
-            margin-bottom: 15px;
-        }
-
-        /* =========================
-           STADIUM
-        ========================= */
-
-        .stadium {
-            background:
-                linear-gradient(
-                    rgba(0,0,0,.7),
-                    rgba(0,0,0,.85)
-                ),
-                url("https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1600&q=85")
-                center/cover;
-
-            border-radius: 12px;
-            padding: 70px 40px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            gap: 40px;
-
-            border: 1px solid #333;
-        }
-
-        .stadium h2 {
-            font-family: 'Anton', sans-serif;
-            font-size: 55px;
-            text-transform: uppercase;
-        }
-
-        .stadium p {
-            color: #d1d5db;
-            line-height: 1.8;
-            max-width: 600px;
-            margin-top: 15px;
-        }
-
-        .location-button {
-            display: inline-block;
-            white-space: nowrap;
-
-            background: var(--accent);
-            color: #000;
-
-            padding: 16px 25px;
-            text-decoration: none;
-
-            font-weight: 800;
-            border-radius: 5px;
-        }
-
-        /* =========================
-           INVITATION
-        ========================= */
-
-        .watch {
-            text-align: center;
-            padding: 110px 20px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    #242424,
-                    #070707 65%
-                );
-        }
-
-        .watch .section-label {
-            margin-bottom: 15px;
-        }
-
-        .watch h2 {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(50px, 8vw, 100px);
-            line-height: .9;
-            text-transform: uppercase;
-        }
-
-        .watch h2 span {
-            color: var(--accent);
-        }
-
-        .watch p {
-            max-width: 650px;
-            margin: 25px auto 0;
-
-            color: #bdbdbd;
-            line-height: 1.8;
-        }
-
-        .watch-button {
-            display: inline-block;
-            margin-top: 30px;
-
-            padding: 17px 32px;
-
-            background: var(--accent);
-            color: #000;
-
-            text-decoration: none;
-            font-weight: 900;
-
-            border-radius: 5px;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 30px 6%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            color: #777;
-            font-size: 13px;
-        }
-
-        footer strong {
-            color: white;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .teams-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .fixture {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .fixture-type {
-                margin-top: 5px;
-            }
-
-            .stadium {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            nav {
-                padding: 20px;
-            }
-
-            nav div:last-child {
-                display: none;
-            }
-
-            .hero {
-                padding: 120px 20px 60px;
-            }
-
-            .hero h1 {
-                font-size: 85px;
-            }
-
-            section.content {
-                padding: 65px 20px;
-            }
-
-            .section-title {
-                font-size: 40px;
-            }
-
-            .teams-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .event-info {
-                flex-direction: column;
-            }
-
-            .info-box {
-                width: 100%;
-            }
-
-            .stadium {
-                padding: 45px 25px;
-            }
-
-            .stadium h2 {
-                font-size: 42px;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportPulse — Latest Sports News</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #17202a;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      background: #071a2d;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 3px 15px rgba(0,0,0,.15);
+    }
+
+    .topbar {
+      max-width: 1200px;
+      margin: auto;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #ff3d3d;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      font-weight: 600;
+    }
+
+    nav a {
+      opacity: .9;
+      transition: .2s;
+    }
+
+    nav a:hover {
+      color: #ff4b4b;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* BREAKING NEWS */
+    .breaking {
+      background: #e82929;
+      color: white;
+    }
+
+    .breaking-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 11px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      overflow: hidden;
+    }
+
+    .breaking-label {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .ticker {
+      white-space: nowrap;
+      animation: ticker 18s linear infinite;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: 25px;
+    }
+
+    .section-title a {
+      color: #e82929;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    .hero-main {
+      min-height: 420px;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.05)),
+        url("https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+      border-radius: 12px;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      padding: 35px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e82929;
+      color: white;
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 39px;
+      line-height: 1.08;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    .side-news {
+      display: grid;
+      gap: 20px;
+    }
+
+    .side-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    }
+
+    .side-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .side-card-content {
+      padding: 15px;
+    }
+
+    .side-card h3 {
+      font-size: 18px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      color: #7b8794;
+      font-size: 12px;
+    }
+
+    /* LAYOUT */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    /* NEWS GRID */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 17px;
+    }
+
+    .news-content h3 {
+      font-size: 19px;
+      line-height: 1.3;
+      margin: 8px 0;
+    }
+
+    .news-content p {
+      color: #68737d;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* SIDEBAR */
+    .sidebar-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    }
+
+    .sidebar-box h3 {
+      margin-bottom: 18px;
+      border-left: 4px solid #e82929;
+      padding-left: 10px;
+    }
+
+    /* SCORES */
+    .score {
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .score:last-child {
+      border-bottom: 0;
+    }
+
+    .score-league {
+      font-size: 11px;
+      color: #e82929;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+
+    .score-result {
+      text-align: right;
+    }
+
+    .status {
+      font-size: 11px;
+      color: #28a745;
+      margin-top: 4px;
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px 5px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    th {
+      color: #777;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #071a2d;
+      color: white;
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    .newsletter h3 {
+      margin-bottom: 8px;
+    }
+
+    .newsletter p {
+      color: #b8c2cc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .newsletter input {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .newsletter button {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 5px;
+      background: #e82929;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 50px;
+      background: #071a2d;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+    }
+
+    footer p,
+    footer a {
+      color: #aeb9c5;
+      font-size: 14px;
+      line-height: 2;
+      display: block;
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #203247;
+      color: #8997a6;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: #071a2d;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero,
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main {
+        min-height: 350px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero-main {
+        padding: 22px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+  <!-- HEADER -->
+  <header>
+    <div class="topbar">
+      <a href="#" class="logo">Sport<span>Pulse</span></a>
 
-    <nav>
-        <div class="nav-logo">
-            DIAMOND<span>.</span>
-        </div>
+      <nav id="nav">
+        <a href="#">Home</a>
+        <a href="#football">Football</a>
+        <a href="#cricket">Cricket</a>
+        <a href="#basketball">Basketball</a>
+        <a href="#tennis">Tennis</a>
+        <a href="#more">More</a>
+      </nav>
 
-        <div>
-            <a href="#teams">TEAMS</a>
-            <a href="#fixtures">FIXTURES</a>
-            <a href="#venue">VENUE</a>
-        </div>
-    </nav>
+      <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
 
+  <!-- BREAKING NEWS -->
+  <div class="breaking">
+    <div class="breaking-inner">
+      <span class="breaking-label">🔴 BREAKING</span>
+      <div class="ticker">
+        Championship action continues tonight • Latest scores and transfer news •
+        Follow SportPulse for live updates
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
 
     <!-- HERO -->
+    <div class="section-title">
+      <h2>Top Stories</h2>
+      <a href="#">VIEW ALL →</a>
+    </div>
 
-    <header class="hero">
+    <section class="hero">
 
+      <article class="hero-main">
         <div class="hero-content">
+          <span class="tag">Football</span>
+          <h1>Big Match Weekend: Teams Prepare for a High-Stakes Battle</h1>
+          <p>
+            The latest sporting action brings another exciting weekend of
+            competition as teams look to make their mark.
+          </p>
+          <div class="meta" style="color:#ccc;margin-top:12px;">
+            18 Sep 2026 · 10:30 AM
+          </div>
+        </div>
+      </article>
 
-            <div class="small-title">
-                Gully Cricket Tournament 2026
-            </div>
+      <div class="side-news">
 
-            <h1>
-                DIAMOND<span>.</span>
-            </h1>
+        <article class="side-card">
+          <img
+            src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=700&q=80"
+            alt="Cricket"
+          />
+          <div class="side-card-content">
+            <span class="tag">Cricket</span>
+            <h3>Cricket season heats up as rivals meet again</h3>
+            <div class="meta">2 hours ago</div>
+          </div>
+        </article>
 
-            <h2>
-                The Gully. The Game. The Crowd.
-            </h2>
+        <article class="side-card">
+          <img
+            src="https://images.unsplash.com/photo-1518065896235-a4c93e088e7d?auto=format&fit=crop&w=700&q=80"
+            alt="Basketball"
+          />
+          <div class="side-card-content">
+            <span class="tag">Basketball</span>
+            <h3>Stars ready for another night of intense action</h3>
+            <div class="meta">4 hours ago</div>
+          </div>
+        </article>
 
-            <p class="hero-description">
-                Get ready for an action-packed cricket experience.
-                Come to Diamond Stadium, bring your friends and
-                cheer for your favourite team as the best of gully
-                cricket goes head-to-head.
-            </p>
+      </div>
+    </section>
 
-            <div class="event-info">
+    <!-- MAIN -->
+    <section class="main-layout">
 
-                <div class="info-box">
-                    <small>Tournament</small>
-                    <strong>Gully Cricket 2026</strong>
-                </div>
+      <div>
 
-                <div class="info-box">
-                    <small>Starts</small>
-                    <strong>20 September 2026</strong>
-                </div>
-
-                <div class="info-box">
-                    <small>Final</small>
-                    <strong>20 October 2026</strong>
-                </div>
-
-                <div class="info-box">
-                    <small>Venue</small>
-                    <strong>Diamond Stadium</strong>
-                </div>
-
-            </div>
-
-            <a href="#fixtures" class="hero-btn">
-                VIEW MATCHES →
-            </a>
-
+        <div class="section-title">
+          <h2>Latest News</h2>
+          <a href="#">MORE NEWS →</a>
         </div>
 
-    </header>
+        <div class="news-grid">
 
+          <article class="news-card" id="football">
+            <img
+              src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80"
+              alt="Football"
+            />
+            <div class="news-content">
+              <span class="tag">Football</span>
+              <h3>Managers reveal plans ahead of the weekend fixtures</h3>
+              <p>
+                Coaches have discussed their preparations and expectations
+                ahead of another important round of matches.
+              </p>
+              <div class="meta" style="margin-top:12px;">1 hour ago</div>
+            </div>
+          </article>
 
-    <!-- TEAMS -->
+          <article class="news-card" id="cricket">
+            <img
+              src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80"
+              alt="Cricket"
+            />
+            <div class="news-content">
+              <span class="tag">Cricket</span>
+              <h3>Batters shine as teams compete in thrilling contest</h3>
+              <p>
+                A strong batting display has set up an exciting finish in
+                today's latest cricket action.
+              </p>
+              <div class="meta" style="margin-top:12px;">2 hours ago</div>
+            </div>
+          </article>
 
-    <section class="content" id="teams">
+          <article class="news-card" id="basketball">
+            <img
+              src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80"
+              alt="Basketball"
+            />
+            <div class="news-content">
+              <span class="tag">Basketball</span>
+              <h3>League contenders look to build momentum</h3>
+              <p>
+                Teams are entering a crucial part of the season with every
+                result becoming increasingly important.
+              </p>
+              <div class="meta" style="margin-top:12px;">3 hours ago</div>
+            </div>
+          </article>
 
-        <div class="section-label">
-            10 Teams • 1 Tournament
+          <article class="news-card" id="tennis">
+            <img
+              src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&q=80"
+              alt="Tennis"
+            />
+            <div class="news-content">
+              <span class="tag">Tennis</span>
+              <h3>Top players advance after dramatic matches</h3>
+              <p>
+                Several close encounters produced plenty of excitement as the
+                tournament moved into its next stage.
+              </p>
+              <div class="meta" style="margin-top:12px;">5 hours ago</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside>
+
+        <div class="sidebar-box">
+          <h3>Live Scores</h3>
+
+          <div class="score">
+            <div class="score-league">FOOTBALL · LIVE</div>
+            <div class="teams">
+              <span>United FC</span>
+              <div class="score-result">
+                2 - 1
+                <div class="status">72'</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="score">
+            <div class="score-league">CRICKET · ODI</div>
+            <div class="teams">
+              <span>Team A</span>
+              <div class="score-result">
+                246/6
+                <div class="status">42.3 overs</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="score">
+            <div class="score-league">BASKETBALL · FINAL</div>
+            <div class="teams">
+              <span>City Lions</span>
+              <div class="score-result">
+                108 - 104
+                <div class="status">Final</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <h2 class="section-title">
-            Meet The Teams
-        </h2>
+        <div class="sidebar-box">
+          <h3>League Table</h3>
 
-        <div class="teams-grid">
-
-            <div class="team-card">
-                <div class="team-number">TEAM 01</div>
-                <h3>Gully Gladiators</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 02</div>
-                <h3>Street Strikers</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 03</div>
-                <h3>Gully Kings</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 04</div>
-                <h3>Desi Destroyers</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 05</div>
-                <h3>Gully Warriors</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 06</div>
-                <h3>Batting Baaz</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 07</div>
-                <h3>Sixer Squad</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 08</div>
-                <h3>Street Legends</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 09</div>
-                <h3>Gully Gang</h3>
-            </div>
-
-            <div class="team-card">
-                <div class="team-number">TEAM 10</div>
-                <h3>Power Hitters</h3>
-            </div>
-
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Team</th>
+                <th>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>City FC</td>
+                <td>42</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>United FC</td>
+                <td>39</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Rovers</td>
+                <td>36</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Athletic</td>
+                <td>34</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <div class="newsletter">
+          <h3>Get Sports Updates</h3>
+          <p>
+            Subscribe for the latest sports news, scores and major headlines.
+          </p>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Your email address"
+          />
+
+          <button onclick="subscribe()">SUBSCRIBE</button>
+        </div>
+
+      </aside>
 
     </section>
 
+  </main>
 
-    <!-- FIXTURES -->
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
 
-    <section class="content" id="fixtures">
-
-        <div class="section-label">
-            Live The Game
-        </div>
-
-        <h2 class="section-title">
-            Match Fixtures
-        </h2>
-
-        <div class="fixtures">
-
-            <div class="fixture">
-                <div class="fixture-date">20 SEP 2026</div>
-                <div class="fixture-teams">
-                    Gully Gladiators &nbsp; VS &nbsp; Street Strikers
-                </div>
-                <div class="fixture-type">Match 01</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">21 SEP 2026</div>
-                <div class="fixture-teams">
-                    Gully Kings &nbsp; VS &nbsp; Desi Destroyers
-                </div>
-                <div class="fixture-type">Match 02</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">22 SEP 2026</div>
-                <div class="fixture-teams">
-                    Gully Warriors &nbsp; VS &nbsp; Batting Baaz
-                </div>
-                <div class="fixture-type">Match 03</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">23 SEP 2026</div>
-                <div class="fixture-teams">
-                    Sixer Squad &nbsp; VS &nbsp; Street Legends
-                </div>
-                <div class="fixture-type">Match 04</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">24 SEP 2026</div>
-                <div class="fixture-teams">
-                    Gully Gang &nbsp; VS &nbsp; Power Hitters
-                </div>
-                <div class="fixture-type">Match 05</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">27 SEP 2026</div>
-                <div class="fixture-teams">
-                    Winner Match 1 &nbsp; VS &nbsp; Winner Match 2
-                </div>
-                <div class="fixture-type">Semi Final 01</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">28 SEP 2026</div>
-                <div class="fixture-teams">
-                    Winner Match 3 &nbsp; VS &nbsp; Winner Match 4
-                </div>
-                <div class="fixture-type">Semi Final 02</div>
-            </div>
-
-            <div class="fixture">
-                <div class="fixture-date">30 SEP 2026</div>
-                <div class="fixture-teams">
-                    Winner Match 5 &nbsp; VS &nbsp; Best Performing Losing Team
-                </div>
-                <div class="fixture-type">Qualifier</div>
-            </div>
-
-        </div>
-
-
-        <!-- FINAL -->
-
-        <div class="final">
-
-            <div class="final-badge">
-                GRAND FINAL
-            </div>
-
-            <div class="fixture-date">
-                20 OCTOBER 2026
-            </div>
-
-            <div class="fixture-teams">
-                FINALIST 01 &nbsp; VS &nbsp; FINALIST 02
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- STADIUM -->
-
-    <section class="content" id="venue">
-
-        <div class="section-label">
-            Match Venue
-        </div>
-
-        <div class="stadium">
-
-            <div>
-
-                <h2>
-                    Diamond<br>Stadium
-                </h2>
-
-                <p>
-                    This is where the action happens.
-                    Join us at Diamond Stadium for the
-                    Gully Cricket Tournament 2026 and
-                    experience the matches live from the
-                    stands.
-                </p>
-
-                <p>
-                    <strong>📍 Location:</strong>
-                    Diamond Stadium
-                </p>
-
-            </div>
-
-            <a
-                href="https://www.google.com/maps/search/?api=1&query=Diamond+Stadium"
-                target="_blank"
-                class="location-button"
-            >
-                OPEN MAP →
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- INVITATION -->
-
-    <section class="watch">
-
-        <div class="section-label">
-            Everyone Is Welcome
-        </div>
-
-        <h2>
-            COME<br>
-            <span>WATCH LIVE.</span>
-        </h2>
-
+      <div>
+        <h3>SportPulse</h3>
         <p>
-            Bring your friends. Bring your family.
-            Bring your cricket spirit.
-            Come to Diamond Stadium and make some noise
-            for the players.
+          Your destination for sports news, scores, match updates and
+          headlines from around the world.
         </p>
+      </div>
 
-        <a
-            href="https://www.google.com/maps/search/?api=1&query=Diamond+Stadium"
-            target="_blank"
-            class="watch-button"
-        >
-            📍 FIND DIAMOND STADIUM
-        </a>
+      <div>
+        <h3>Sports</h3>
+        <a href="#football">Football</a>
+        <a href="#cricket">Cricket</a>
+        <a href="#basketball">Basketball</a>
+        <a href="#tennis">Tennis</a>
+      </div>
 
-    </section>
+      <div>
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Advertise</a>
+        <a href="#">Careers</a>
+      </div>
 
+      <div>
+        <h3>Follow</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">X / Twitter</a>
+        <a href="#">YouTube</a>
+      </div>
 
-    <!-- FOOTER -->
+    </div>
 
-    <footer>
+    <div class="copyright">
+      © 2026 SportPulse. All rights reserved.
+    </div>
+  </footer>
 
-        <div>
-            <strong>DIAMOND</strong> — Gully Cricket Tournament 2026
-        </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("nav").classList.toggle("active");
+    }
 
-        <div>
-            Diamond Stadium
-        </div>
+    function subscribe() {
+      const email = document.getElementById("email").value;
 
-    </footer>
+      if (!email) {
+        alert("Please enter your email address.");
+        return;
+      }
+
+      alert("Thanks for subscribing to SportPulse!");
+      document.getElementById("email").value = "";
+    }
+  </script>
 
 </body>
 </html>
-```
